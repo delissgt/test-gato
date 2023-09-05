@@ -1,7 +1,9 @@
 import React , {useEffect, useState} from "react";
 
-import {Card, Space, Spin} from "antd";
+import {Space, Spin} from "antd";
 // const {Meta} = Card;
+
+import CardDescription from "./CardDescription";
 
 import {getApi} from "../../library/helpers/ApiActions";
 
@@ -42,31 +44,16 @@ const Gallery = () => {
         )
       } else {
         return(
-            <div>
-              <p>info perritos</p>
+            <Space align={"center"} size={[32, 32]}>
               {
                 informationDog.map( dog => (
-                    <Card cover={<img src={dog.url}/>} style={{ width: 240, }}>
-                      <p>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</p>
-                    </Card>
+                    <CardDescription dog={dog}/>
                 ))
               }
-            </div>
+            </Space>
 
             )
-
-        // imagesDog.forEach((dog) => {
-        //   return(
-              // <Card cover={<img src={dog.image} />} />
-              // <p>{dog.id}</p>
-              // <p>info perritos</p>
-          // )
-        // })
       }
-
-
-  // )
-
 
 }
 
