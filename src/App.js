@@ -6,16 +6,17 @@ import './App.css';
 import Login from "./components/Login";
 import ClockComponent from "./components/Clock";
 import Gallery from "./components/Gallery";
+import WelcomeMessage from "./components/WelcomeMessage";
 
 function App() {
-  // const [stateAuth, setStateAuth] = useState(false);
-  const [stateAuth, setStateAuth] = useState(true);
-
+  const [stateAuth, setStateAuth] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
 
   if (stateAuth) {
     return(
         <div className="App">
+          <WelcomeMessage modalOpen={modalOpen} setModelOpen={setModalOpen} />
           <ClockComponent/>
           <br/>
           <Gallery/>
@@ -25,7 +26,7 @@ function App() {
   }else{
     return (
         <div className="App">
-          <Login login={setStateAuth} />
+          <Login login={setStateAuth} setModalOpen={setModalOpen}/>
         </div>
     )
   }
