@@ -1,6 +1,6 @@
 import React , {useEffect, useState} from "react";
 
-import {Space, Spin} from "antd";
+import {Space, Spin, List, Avatar} from "antd";
 // const {Meta} = Card;
 
 import CardDescription from "./CardDescription";
@@ -44,13 +44,23 @@ const Gallery = () => {
         )
       } else {
         return(
-            <Space align={"center"} size={[32, 32]}>
+
+            <List
+                itemLayout={"horizontal"}
+                dataSource={informationDog}
+            >
               {
                 informationDog.map( dog => (
-                    <CardDescription dog={dog}/>
+                    // <CardDescription dog={dog}/>
+                    <List.Item>
+                      <List.Item.Meta
+                          avatar={<Avatar src={dog.url} />}
+                          title={<a>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</a>}
+                      />
+                    </List.Item>
                 ))
               }
-            </Space>
+            </List>
 
             )
       }
