@@ -3,14 +3,17 @@ import React, {useEffect, useState} from "react";
 import Clock from "react-clock";
 import "react-clock/dist/Clock.css"
 
+const subtractHour = (date) => {
+  date.setHours(date.getHours() -1);
+  return date
+}
+
 const ClockComponent = () => {
-  const [clockDate, setClockDate] = useState(new Date());
+  const [clockDate, setClockDate] = useState(subtractHour(new Date()));
 
 
   useEffect(() => {
-    const interval = setInterval(() => setClockDate(new Date()), 1000);
-
-    console.log("c", clockDate)
+    const interval = setInterval(() => setClockDate( subtractHour(new Date())), 1000);
 
     return () => {
       clearInterval(interval);

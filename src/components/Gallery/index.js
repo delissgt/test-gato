@@ -1,9 +1,8 @@
 import React , {useEffect, useState} from "react";
 
-import {Space, Spin, List, Avatar, Row, Col} from "antd";
-// const {Meta} = Card;
+import {Spin, List, Avatar, Row, Col} from "antd";
 
-import CardDescription from "./CardDescription";
+// import CardDescription from "./CardDescription";
 
 import {getApi} from "../../library/helpers/ApiActions";
 
@@ -18,15 +17,13 @@ const Gallery = () => {
 
     try {
       const response = await getApi(url, "")
-      console.log("response", response)
       const data = response.data
-      console.log("data")
+      // console.log("data", data)
       setInformationDog(data)
 
     }catch (e) {
       console.log("ERROR NOT GET IMAGES")
     } finally {
-      console.log("OK GET IMAGES")
       setWaiting(false)
     }
 
@@ -55,7 +52,7 @@ const Gallery = () => {
             >
               {
                 informationDog.map( dog => (
-                    <List.Item>
+                    <List.Item key={dog.id}>
                       <List.Item.Meta
                           avatar={<Avatar src={dog.url} size={"large"} />}
                           title={<a>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</a>}
