@@ -19,8 +19,7 @@ const ClockComponent = () => {
 
 
   return (
-      <div>
-        <p>Current time:</p>
+      <div style={{ display: "inline-block", padding:"10px", paddingBottom: "10px"}}>
         <Clock value={clockDate} className="react-clock"/>
       </div>
   )
