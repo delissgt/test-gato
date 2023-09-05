@@ -15,6 +15,7 @@ const Login = ({login, setModalOpen}) => {
     const filter = users.users.filter( user => user.email == values.email && user.password == values.password)
 
     if (filter.length === 1){
+      localStorage.setItem("user-login", filter[0].id)
       setModalOpen(true)
       login(true)
     }else {

@@ -13,6 +13,16 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
 
+  useEffect(() => {
+    const userLogged = localStorage.getItem("user-login")
+    if (userLogged) {
+      setStateAuth(true)
+    }else{
+      setStateAuth(false)
+    }
+  });
+
+
   if (stateAuth) {
     return(
         <div className="App">
