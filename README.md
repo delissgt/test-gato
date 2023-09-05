@@ -17,4 +17,10 @@ En caso de que los datos sean invalidos se monstraran algunos mensajes de error
 * un reloj con la hora actual y
 * un listado con las images de perritos y su nombre
 
-![Vista al iniciar sesión](/prueba-santo-gato/public/documentation/index.png)
+![Vista al iniciar sesión](public/documentation/validation-values.png)
+
+
+![Vista al iniciar sesión](public/documentation/success-login.png)
+
+
+![Vista al iniciar sesión](public/documentation/index.png)
