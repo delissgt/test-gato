@@ -5,11 +5,14 @@ import {Spin, List, Avatar, Row, Col} from "antd";
 // import CardDescription from "./CardDescription";
 
 import {getApi} from "../../library/helpers/ApiActions";
+import CardDescription from "./CardDescription";
 
 
 const Gallery = () => {
   const [informationDog, setInformationDog] = useState([])
   const [waiting, setWaiting] = useState(true)
+  const [currentDog, setCurrentDog] = useState({})
+  const[showCard, setShowCard] = useState(false)
 
 
   const getImages = async () => {
@@ -52,7 +55,10 @@ const Gallery = () => {
             >
               {
                 informationDog.map( dog => (
-                    <List.Item key={dog.id}>
+                    <List.Item key={dog.id} onClick={() => {
+                      setCurrentDog(dog)
+                      setShowCard(true)
+                    }}>
                       <List.Item.Meta
                           avatar={<Avatar src={dog.url} size={"large"} />}
                           title={<a>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</a>}
@@ -61,6 +67,15 @@ const Gallery = () => {
                 ))
               }
             </List>
+                {
+                  showCard && (
+                      <CardDescription
+                          dog={currentDog}
+                          visible={showCard}
+                          closer={()=> setShowCard(false)}
+                      />
+                  )
+                }
               </Col>
             </Row>
 
