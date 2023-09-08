@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from "react";
+import React , {useEffect, useState, useCallback} from "react";
 
 import {Spin, List, Avatar, Row, Col} from "antd";
 
@@ -14,8 +14,8 @@ const Gallery = () => {
   const [currentDog, setCurrentDog] = useState({})
   const[showCard, setShowCard] = useState(false)
 
-
-  const getImages = async () => {
+  //TODO using useCallback
+  const getImages = useCallback(async () => {
     const url = "images/search?limit=15"
 
     try {
@@ -30,8 +30,7 @@ const Gallery = () => {
       setWaiting(false)
     }
 
-  }
-
+  }, [])
 
   useEffect(() => {
     getImages()

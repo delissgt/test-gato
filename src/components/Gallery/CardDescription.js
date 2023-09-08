@@ -4,6 +4,7 @@ import {Card, Modal} from "antd";
 
 const CardDescription = ({dog, visible, closer}) => {
   return(
+      // TODO no necessary define like array function
       // <Modal open={visible} onCancel={()=>{closer()} }>
       <Modal
           open={visible}
