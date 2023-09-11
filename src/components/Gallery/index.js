@@ -1,72 +1,32 @@
-import React , {useEffect, useState} from "react";
-
-import {Spin, List, Avatar, Row, Col} from "antd";
-
-// import CardDescription from "./CardDescription";
-
-import {getApi} from "../../library/helpers/ApiActions";
+import React from 'react';
+import { Spin, List, Row, Col } from 'antd';
+import ListItem from './ListItem';
+import { useGallery } from '../../hooks/useGallery';
 
 
-const Gallery = () => {
-  const [informationDog, setInformationDog] = useState([])
-  const [waiting, setWaiting] = useState(true)
+const Gallery = () => {	
+	const { data, waiting } = useGallery()
 
-
-  const getImages = async () => {
-    const url = "images/search?limit=15"
-
-    try {
-      const response = await getApi(url, "")
-      const data = response.data
-      // console.log("data", data)
-      setInformationDog(data)
-
-    }catch (e) {
-      console.log("ERROR NOT GET IMAGES")
-    } finally {
-      setWaiting(false)
-    }
-
-  }
-
-
-  useEffect(() => {
-    getImages()
-  }, [])
-
-
-      if (waiting) {
-        return (
-            <Spin/>
-        )
-      } else {
-        return(
-            <Row>
-              <Col span={20} offset={2}>
-
-
-
-            <List
-                itemLayout={"horizontal"}
-                dataSource={informationDog}
-            >
-              {
-                informationDog.map( dog => (
-                    <List.Item key={dog.id}>
-                      <List.Item.Meta
-                          avatar={<Avatar src={dog.url} size={"large"} />}
-                          title={<a>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</a>}
-                      />
-                    </List.Item>
-                ))
-              }
-            </List>
-              </Col>
-            </Row>
-
-            )
-      }
-
+	return (
+		waiting
+			? (<Spin />)
+			: (
+				<Row>
+					<Col span={20} offset={2}>
+						<List
+							itemLayout={'horizontal'}
+							dataSource={data}
+						>
+							{
+								data.map(dog => (
+									<ListItem dog={dog} />
+								))
+							}
+						</List>
+					</Col>
+				</Row>
+			)
+	)
 }
 
 export default Gallery

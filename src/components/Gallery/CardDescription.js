@@ -1,12 +1,19 @@
 import React from "react";
 
-import {Card} from "antd";
+import {Card, Modal} from "antd";
 
-const CardDescription = ({dog}) => {
+const CardDescription = ({dog, visible, closer}) => {
   return(
-        <Card cover={<img src={dog.url} style={{ height: 100, width:100 }} />} style={{ width: 100, height: 100 }}>
-          <p>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</p>
-        </Card>
+      // TODO no necessary define like array function
+      // <Modal open={visible} onCancel={()=>{closer()} }>
+      <Modal
+          open={visible}
+          onCancel={() => closer()}
+          title={<p>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</p>}
+      >
+        <Card cover={<img src={dog.url} style={{ height: 150, width:150 }} />} style={{ width: 100, height: 100 }}/>
+      </Modal>
+
 
   )
 }
