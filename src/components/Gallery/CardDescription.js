@@ -8,7 +8,7 @@ const CardDescription = ({dog, visible, closer}) => {
       // <Modal open={visible} onCancel={()=>{closer()} }>
       <Modal
           open={visible}
-          onCancel={closer}
+          onCancel={() => closer()}
           title={<p>{dog["breeds"][0] ? dog["breeds"][0].name : "Unknown"}</p>}
       >
         <Card cover={<img src={dog.url} style={{ height: 150, width:150 }} />} style={{ width: 100, height: 100 }}/>
